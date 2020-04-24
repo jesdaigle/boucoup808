@@ -1,0 +1,17 @@
+.bpm {
+    position: relative;
+    background-color: #181818;
+    border: none;
+    color: white;
+    padding: 1em;
+    width: 6em;
+    display: inline-block;
+    top: 0px;
+    margin-right: 2em;
+    text-align: center;
+}
+
+.bpm-container {
+    display: inline;
+    alignment: left;
+}

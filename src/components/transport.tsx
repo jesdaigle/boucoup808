@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Instrument} from "./instrument";
 import { Steps } from "./steps";
-import { InstrumentElements } from "./instrument-elements";
 import { Transport } from 'tone';
-import { Play } from "./play";
+import { Controls } from "./controls";
 import { BPM} from "./bpm-component";
+import { InstrumentElements } from "./instrument-elements";
+import { PatternDropdown } from "./dropdown";
+
 
 
 export class TransportComponent extends React.Component<any, any> {
@@ -15,11 +17,12 @@ export class TransportComponent extends React.Component<any, any> {
                     false, false, false],
             selected: null,
             bpm: 120,
-        }
+        };
 
         Transport.loop = true;
         Transport.loopEnd = '1m'
     }
+
 
     pause = () => {
         Transport.stop();
@@ -59,14 +62,15 @@ export class TransportComponent extends React.Component<any, any> {
         return (
             <div>
                 <h1 style={{color: 'black'}}>Bocoup 808</h1>
-                <div style={{ display: 'block' }}>
+                <div style={{ display: 'inline-block' }}>
                     <BPM handleChange={this.handleBPMChange} value={this.state.bpm} />
-                    <Play play={this.play} pause={this.pause} />
+                    <Controls play={this.play} pause={this.pause} />
+                    <PatternDropdown/>
                 </div>
                 <InstrumentElements steps={this.state.steps} selectedInstrument={this.state.selected}>
-                    <Tone='Kick' key='Kick' handleClick={this.selectTone} />
-                    <Tones engine='Hat' key='Hat' handleClick={this.selectTone} />
-                    <Tones engine='Snare' key='Snare' handleClick={this.selectTone} />
+                    <Instrument engine='Kick' key='Kick' handleClick={this.selectTone} />
+                    <Instrument engine='Hat' key='Hat' handleClick={this.selectTone} />
+                    <Instrument engine='Snare' key='Snare' handleClick={this.selectTone} />
                 </InstrumentElements>
                 <Steps handleStepChange={this.handleStepChange} steps={this.state.steps} />
             </div>
